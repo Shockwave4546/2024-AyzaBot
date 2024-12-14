@@ -17,8 +17,6 @@ object Robot : LoggedRobot() {
   private val garbageCollectorTimer = Timer()
 
   override fun robotInit() {
-    RobotContainer
-
     when (GlobalConstants.ROBOT_TYPE) {
       RobotType.REAL -> {
         Logger.addDataReceiver(NT4Publisher())
@@ -51,6 +49,7 @@ object Robot : LoggedRobot() {
 //    }
 
     Logger.start()
+    RobotContainer
 
     CommandScheduler.getInstance().onCommandInitialize { command -> Logger.recordOutput("/ActiveCommands/${command.name}", true) }
     CommandScheduler.getInstance().onCommandFinish { command -> Logger.recordOutput("/ActiveCommands/${command.name}", false) }
