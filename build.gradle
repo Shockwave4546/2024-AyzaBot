@@ -111,13 +111,6 @@ jar {
   duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-tasks.register('checkAkitInstall', JavaExec) {
-  dependsOn "classes"
-  mainClass = "org.littletonrobotics.junction.CheckInstall"
-  classpath = sourceSets.main.runtimeClasspath
-}
-compileJava.finalizedBy checkAkitInstall
-
 // Configure jar and deploy tasks
 deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
