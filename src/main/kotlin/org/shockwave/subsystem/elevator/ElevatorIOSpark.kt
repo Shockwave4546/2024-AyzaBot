@@ -10,7 +10,7 @@ import org.shockwave.utils.PIDFGains
 
 class ElevatorIOSpark : ElevatorIO {
   private val motor = SparkMax(ElevatorConstants.MOTOR_CAN_ID, SparkLowLevel.MotorType.kBrushless)
-  private val encoder = motor.absoluteEncoder
+  private val encoder = motor.encoder
   private val pid = motor.closedLoopController
 
   init {
