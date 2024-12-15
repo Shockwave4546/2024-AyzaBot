@@ -18,7 +18,7 @@ class ElevatorConstants {
     const val REV_TOLERANCE = 10.0
 
     const val MIN_REV = 0.0;
-    const val MAX_REV = 800.0;
+    const val MAX_REV = 32.0;
 
     val SHOULD_STOP_MOTOR_ALERT = Alert("The encoder is reporting an angle that will break the pivot", Alert.AlertType.kError)
 
