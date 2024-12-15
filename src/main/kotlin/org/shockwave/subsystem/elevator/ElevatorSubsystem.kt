@@ -10,7 +10,7 @@ class ElevatorSubsystem(private val elevator: ElevatorIO) : SubsystemBase() {
   private var desiredState = ElevatorState.STARTING
 
   private val key = "Elevator"
-  private val pidf = TunablePIDF("/SmartDashboard/$key/Tuning/", ElevatorConstants.GAINS)
+  private val pidf = TunablePIDF("$key/Tuning/", ElevatorConstants.GAINS)
 
   override fun periodic() {
     elevator.updateInputs(inputs)
