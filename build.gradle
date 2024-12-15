@@ -88,11 +88,11 @@ dependencies {
 
   implementation 'gov.nist.math:jama:1.0.3'
 
-  def akitJson = new groovy.json.JsonSlurper().parseText(new File(projectDir.getAbsolutePath() + "/vendordeps/AdvantageKit.json").text)
+  def akitJson = new JsonSlurper().parseText(new File(projectDir.getAbsolutePath() + "/vendordeps/AdvantageKit.json").text)
   annotationProcessor "org.littletonrobotics.akit:akit-autolog:$akitJson.version"
 }
 
-task(replayWatch, type: JavaExec) {
+tasks.register('replayWatch', JavaExec) {
   mainClass = "org.littletonrobotics.junction.ReplayWatch"
   classpath = sourceSets.main.runtimeClasspath
 }
