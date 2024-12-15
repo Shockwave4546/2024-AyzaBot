@@ -1,19 +1,13 @@
 package org.shockwave
 
-import edu.wpi.first.wpilibj.Alert
 import edu.wpi.first.wpilibj.PowerDistribution
 import edu.wpi.first.wpilibj.Timer
 import edu.wpi.first.wpilibj2.command.CommandScheduler
 import org.littletonrobotics.junction.LoggedRobot
 import org.littletonrobotics.junction.Logger
 import org.littletonrobotics.junction.networktables.NT4Publisher
-import org.littletonrobotics.junction.wpilog.WPILOGWriter
-import java.nio.file.Files
-import java.nio.file.Paths
 
 object Robot : LoggedRobot() {
-  private val logFolderFound = Alert("Logging is enabled.", Alert.AlertType.kInfo)
-  private val logFolderNotFound = Alert("Logging is disabled as the log folder doesn't exist!", Alert.AlertType.kWarning)
   private val garbageCollectorTimer = Timer()
 
   override fun robotInit() {
@@ -21,15 +15,6 @@ object Robot : LoggedRobot() {
       RobotType.REAL -> {
         Logger.addDataReceiver(NT4Publisher())
         PowerDistribution() // Enables power distribution logging.
-
-        val logFolderPath = Paths.get(GlobalConstants.LOG_FOLDER_PATH)
-        if (Files.notExists(logFolderPath)) Files.createDirectories(logFolderPath) // Create /log folder if it's a new RIO
-        if (Files.exists(logFolderPath)) {
-          logFolderFound.set(true)
-          Logger.addDataReceiver(WPILOGWriter())
-        } else {
-          logFolderNotFound.set(true)
-        }
       }
 
       RobotType.SIM -> {
